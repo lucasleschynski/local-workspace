@@ -1,0 +1,9 @@
+.DS_Store
+auth.json
+accounts.json
+sessions/
+npm/
+bin/
+models-store.json
+trust.json
+*.log

@@ -1,0 +1,10 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "grass",
+  "packages": [
+    "npm:pi-grok-cli"
+  ],
+  "defaultProvider": "xai",
+  "defaultModel": "grok-4.6",
+  "defaultThinkingLevel": "high"
+}
