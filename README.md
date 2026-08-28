@@ -1,6 +1,6 @@
 # workspace
 
-Portable machine settings. Credentials stay off GitHub.
+My settings for local dev tools, including the slightly imperfect Grass theme I ported from ghostty to pi and zed.
 
 ## What's here
 
@@ -17,17 +17,9 @@ Portable machine settings. Credentials stay off GitHub.
 
 On Linux, Ghostty links into `~/.config/ghostty/` instead.
 
-Not included (machine-local / secret):
-
-- `~/.pi/agent/auth.json` — provider tokens; run `/login` on a new machine
-- `~/.pi/grok-cli/accounts.json`
-- `fish_variables` — universal vars / machine paths
-- Ghostty `auto/` — GUI-generated theme include
-- sessions, model cache, npm installs
-
 Grass is the shared theme across Ghostty, Zed, and pi.
 
-## New laptop
+## How to
 
 ```bash
 git clone git@github.com:lucasleschynski/pi-config.git ~/pi-config
@@ -35,15 +27,4 @@ cd ~/pi-config
 ./install.sh
 ```
 
-Then install pi, open it, and `/login` for xAI.
-
-## After changing settings here
-
-```bash
-cd ~/pi-config
-git add -A
-git commit -m "update config"
-git push
-```
-
-On another machine: `git pull && ./install.sh`.
+Then install pi, open it, and `/login`
