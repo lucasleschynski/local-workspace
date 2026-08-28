@@ -6,4 +6,5 @@ npm/
 bin/
 models-store.json
 trust.json
+fish_variables
 *.log

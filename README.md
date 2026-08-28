@@ -1,6 +1,6 @@
-# pi-config
+# workspace
 
-Portable pi + zsh prompt settings. Credentials stay off GitHub.
+Portable machine settings. Credentials stay off GitHub.
 
 ## What's here
 
@@ -9,15 +9,23 @@ Portable pi + zsh prompt settings. Credentials stay off GitHub.
 | `pi/settings.json` | `~/.pi/agent/settings.json` |
 | `pi/extensions/` | `~/.pi/agent/extensions/` |
 | `pi/themes/grass.json` | `~/.pi/agent/themes/grass.json` |
-| `zsh/gnzh.zsh-theme` | `~/.oh-my-zsh/custom/themes/gnzh.zsh-theme` |
+| `fish/config.fish` | `~/.config/fish/config.fish` |
+| `ghostty/config.ghostty` | `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty` |
+| `ghostty/themes/Grass` | same dir, `themes/Grass` |
+| `zed/settings.json` | `~/.config/zed/settings.json` |
+| `zed/themes/grass.json` | `~/.config/zed/themes/grass.json` |
+
+On Linux, Ghostty links into `~/.config/ghostty/` instead.
 
 Not included (machine-local / secret):
 
 - `~/.pi/agent/auth.json` — provider tokens; run `/login` on a new machine
 - `~/.pi/grok-cli/accounts.json`
+- `fish_variables` — universal vars / machine paths
+- Ghostty `auto/` — GUI-generated theme include
 - sessions, model cache, npm installs
 
-Ghostty's Grass theme is built in. Set it in Ghostty if it isn't already.
+Grass is the shared theme across Ghostty, Zed, and pi.
 
 ## New laptop
 

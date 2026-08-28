@@ -3,7 +3,14 @@ set -euo pipefail
 
 root="$(cd "$(dirname "$0")" && pwd)"
 pi_home="${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}"
-zsh_theme_dir="$HOME/.oh-my-zsh/custom/themes"
+fish_home="${XDG_CONFIG_HOME:-$HOME/.config}/fish"
+zed_home="${XDG_CONFIG_HOME:-$HOME/.config}/zed"
+
+if [[ "$(uname -s)" == Darwin ]]; then
+  ghostty_home="$HOME/Library/Application Support/com.mitchellh.ghostty"
+else
+  ghostty_home="${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
+fi
 
 link() {
   local src="$1" dest="$2"
@@ -17,21 +24,33 @@ link() {
   ln -s "$src" "$dest"
 }
 
+link_files() {
+  local src_dir="$1" dest_dir="$2"
+  local f
+  mkdir -p "$dest_dir"
+  for f in "$src_dir"/*; do
+    [[ -f "$f" ]] || continue
+    link "$f" "$dest_dir/$(basename "$f")"
+  done
+}
+
 mkdir -p "$pi_home/extensions" "$pi_home/themes"
 
 link "$root/pi/settings.json" "$pi_home/settings.json"
-for f in "$root/pi/extensions/"*.ts; do
-  link "$f" "$pi_home/extensions/$(basename "$f")"
-done
-for f in "$root/pi/themes/"*.json; do
-  link "$f" "$pi_home/themes/$(basename "$f")"
-done
+link_files "$root/pi/extensions" "$pi_home/extensions"
+link_files "$root/pi/themes" "$pi_home/themes"
 
-if [[ -d "$HOME/.oh-my-zsh" ]]; then
-  link "$root/zsh/gnzh.zsh-theme" "$zsh_theme_dir/gnzh.zsh-theme"
-else
-  echo "oh-my-zsh not found; skipped zsh theme"
-fi
+link "$root/fish/config.fish" "$fish_home/config.fish"
 
-echo "Linked pi config into $pi_home"
-echo "Log in with /login — auth.json is not in this repo."
+link "$root/ghostty/config.ghostty" "$ghostty_home/config.ghostty"
+link_files "$root/ghostty/themes" "$ghostty_home/themes"
+
+link "$root/zed/settings.json" "$zed_home/settings.json"
+link_files "$root/zed/themes" "$zed_home/themes"
+
+echo "Linked workspace config:"
+echo "  pi      -> $pi_home"
+echo "  fish    -> $fish_home"
+echo "  ghostty -> $ghostty_home"
+echo "  zed     -> $zed_home"
+echo "Log in to pi with /login — auth.json is not in this repo."

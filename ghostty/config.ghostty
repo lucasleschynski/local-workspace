@@ -1,0 +1,7 @@
+theme = Grass
+
+# Lighter cursor so it stands out on the Grass background
+cursor-color = #fff0a5
+cursor-text = #13773d
+
+font-size = 18
